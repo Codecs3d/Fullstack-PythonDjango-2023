@@ -11,7 +11,7 @@
 Desarrollado por:
 
 - Christian Torres
-- Madeleine Gallardo
+- Madeline Gallardo
 - Paulette Diemer 
 - Dann Espinoza
 
