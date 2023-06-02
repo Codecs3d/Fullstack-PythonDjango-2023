@@ -12,7 +12,7 @@ Desarrollado por:
 
 - Christian Torres
 - Madeleine Gallardo
-- Paulette Diemer
+- Paulette Diemer 
 - Dann Espinoza
 
 # Información General TeloVendo
