@@ -63,12 +63,13 @@ A continuación se detallan los pasos para configurar y ejecutar el proyecto:
 1. Clona el repositorio de GitHub: `git clone https://github.com/tu_usuario/telovendo.git`.
 2. Crea un entorno virtual e instala las dependencias del proyecto: `pip install -r requirements.txt`.
 3. Configura la conexión a la base de datos en el archivo `settings.py`.
-4. Realiza las migraciones de la base de datos: `python manage.py migrate`.
-5. Carga los datos iniciales: Ejecuta `python manage.py loaddata initial_data.json`.
-6. Crea un superusuario: `python manage.py createsuperuser`.
-7. Inicia el servidor de desarrollo: `python manage.py runserver`.
-8. Accede al panel de administración: Abre `http://localhost:8000/admin` en tu navegador.
-9. Explora la aplicación web: Visita `http://localhost:8000` en tu navegador.
+4. Aplica la migración inicial a la base de datos: `python manage.py makemigrations`.
+5. Realiza las migraciones de la base de datos: `python manage.py migrate`.
+6. Carga los datos iniciales: Ejecuta `python manage.py loaddata initial_data.json`.
+7. Crea un superusuario: `python manage.py createsuperuser`.
+8. Inicia el servidor de desarrollo: `python manage.py runserver`.
+9. Accede al panel de administración: Abre `http://localhost:8000/admin` en tu navegador.
+10. Explora la aplicación web: Visita `http://localhost:8000` en tu navegador.
 
 ## Contribución
 
@@ -589,14 +590,14 @@ La tabla creada tendrá funcionalidades de **búsqueda y ordenamiento**, ya que 
 
 Todo proyecto puede seguir mejorandose de forma indefinida, hasta acá hemos llegado nosotros y nosotras...¿hasta dónde llegarás tú?.
 
-- ¿Quieres ser nuestro cliente?
+- **¿Quieres ser nuestro cliente?**
 Si necesitas este sistema y quieres modificaciones especificas para cubrir las necesidades de tu empresa, contactanos, para que podamos agendar una reunión.
 
-- ¿Eres desarrollad@r?
+- **¿Eres desarrollad@r?**
 Agradecemos tu interés en la documentación del proyecto "TeLoVendo". Esperamos que esta información te sea útil y te brinde una comprensión sólida del sistema de e-commerce desarrollado con Django.
 
 Si tienes alguna pregunta adicional o necesitas más información, no dudes en contactarnos. ¡Gracias por tu atención y apoyo!
 
 Atentamente,  
 El equipo de desarrollo de TeLoVendo<br> 
-[asistencia.telovendo@gmail.com](mailto:asistencia.telovendo@gmail.com)
+**[asistencia.telovendo@gmail.com](mailto:asistencia.telovendo@gmail.com)**
