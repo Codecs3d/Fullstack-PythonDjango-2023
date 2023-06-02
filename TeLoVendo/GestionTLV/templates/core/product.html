@@ -1,0 +1,53 @@
+{% extends 'base2.html' %}
+
+
+{% block links %}
+<li class="nav-item">
+    <a class="nav-link active" href="{% url 'product' %}">Productos</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'order' %}">Pedidos</a>
+</li>
+{% endblock links %}
+
+{% block content %}
+<a class='bg-primary btn mt-2 ms-5' href="{% url 'product_form' id=0 %}">Agregar Producto +</a>
+<div id="wrapper"></div>
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <label onclick='reload()'>{{ message }}</label>
+    {% endfor %}
+</div>
+{% endif %}
+{% block modal %}
+
+{% endblock %}
+<script>
+    var productos = []
+</script>
+{% for producto in productos %}
+<script>
+    productos.push(["{{producto.sku}}", "{{producto.nombre}}", "{{producto.precio}}", "{{producto.stock}}", "{% url 'product_form' id=producto.id_producto %}", "{% url 'product_delete' id=producto.id_producto %}"])
+</script>
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        new gridjs.Grid({
+            columns: ["SKU", "NOMBRE", "PRECIO", "CANTIDAD",
+                {
+                    name: "EDITAR",
+                    formatter: (_, row) => gridjs.html(`<a class='btn btn-primary' href="${row.cells[4].data}">Editar</a>`)
+                },
+                {
+                    name: "ELIMINAR",
+                    formatter: (_, row) => gridjs.html(`<a class='btn btn-danger' href="${row.cells[5].data}">Eliminar</a>`)
+                },
+            ],
+            data: productos,
+            search: true,
+            sort: true
+        }).render(document.getElementById("wrapper"));
+    });
+</script>
+{% endblock content %}

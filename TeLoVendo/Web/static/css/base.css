@@ -1,0 +1,109 @@
+#id_precio::-webkit-inner-spin-button,
+#id_precio::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.bg-primary {
+    background-color: #a5e830 !important;
+}
+
+.text-primary {
+    color: #a5e830 !important;
+}
+
+.text-dark {
+    color: #1e1e1e !important;
+}
+
+
+#search {
+    outline: none;
+    border: none;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-gap: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select {
+    border: none !important;
+    outline: none;
+    border-bottom: 1px solid #a5e830 !important;
+    border-radius: 0 !important;
+
+}
+
+.messages {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+
+.messages>label {
+    width: 300px;
+    height: 100px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a5e830;
+}
+
+.cant-carrito {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #a5e830;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.bg-dark {
+    background-color: #1e1e1e !important;
+}
+
+.border-primary {
+    border-color: #a5e830 !important;
+}
+
+
+#profile-btn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+
+
+
+.hover-link:hover {
+    color: #a5e830 !important;
+}
+
+
+.specs {
+    left: 0 !important;
+    border-radius: 10px;
+}

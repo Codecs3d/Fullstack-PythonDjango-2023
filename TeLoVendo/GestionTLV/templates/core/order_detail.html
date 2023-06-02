@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method='post'>
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Estado del pedido</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5 w-100">
+                    <select name='estado' class='w-100' style='height:30px!important'>
+                        {% for x in estados %}
+                        {% if pedido.estado == x.estado %}
+                        <option value='{{x.id_estado}}' selected>{{x.titulo}}</option>
+                        {% else %}
+                        <option value='{{x.id_estado}}'>{{x.titulo}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <label onclick='reload()'>{{ message }}</label>
+    {% endfor %}
+</div>
+{% endif %}
+<div class='row fs-4'>
+    <div class='col-md-6 col-12 d-flex justify-content-center'>
+        <div class='d-grid'>
+            <label class='text-primary fs-3 fw-bold'>Pedido N° {{pedido.orden}}</label>
+            <label>Fecha: {{pedido.fecha}}</label>
+            <label class='me-5'>Estado:{{pedido.estado}}
+                <button type="button" class="btn bg-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Cambiar Estado
+                </button>
+            </label>
+            <label>Metodo de pago:{{pedido.id_pago}}</label>
+        </div>
+    </div>
+    <div class='col-md-6 col-12 d-flex mt-5 mt-md-0 justify-content-center'>
+        <div class='d-grid'>
+            <label class='text-primary fs-3 fw-bold'>Cliente</label>
+            <label>{{pedido.id_cliente.first_name}} {{pedido.id_cliente.last_name}}</label>
+            <label>{{pedido.id_cliente.email}}</label>
+            <label>+569 {{cliente.telefono}}</label>
+            <label>{{cliente.calle}} N°{{cliente.numero}}</label>
+            <label>{{cliente.region}}, {{cliente.comuna}}</label>
+        </div>
+    </div>
+</div>
+<div class='container mt-5'>
+    <div class='container d-grid fs-3 p-0 mt-3'>
+        <h3 class='text-primary m-auto'>Detalle</h3>
+
+        {% for item in detalles %}
+
+        <div class='d-flex w-75 m-auto justify-content-between'><label>{{item.id_producto.nombre}} x {{item.cantidad}}</label><label>${{item.total}}</label></div>
+
+        {% endfor %}
+
+
+        <div class='d-flex w-75 m-auto justify-content-between'><label>Subtotal:</label><label>${{pedido.subtotal}}</label></div>
+        <div class='d-flex w-75 m-auto justify-content-between'><label>Envío:</label><label>$5000</label></div>
+        <div class='d-flex w-75 m-auto justify-content-between'><label>Total:</label><label>${{pedido.total}}</label></div>
+
+    </div>
+</div>
+{% endblock content%}

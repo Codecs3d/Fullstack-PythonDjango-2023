@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static %}
+<div class='container'>
+    <div class='row'>
+        <div class='col-12'>
+            <h1 class='text-center text-primary'>Mi Perfil</h1>
+        </div>
+        <div style='height:50px'></div>
+        <div class='col-12 col-md-4'>
+            <div class='container d-grid border shadow p-4 rounded-5' style='width:fit-content!important'>
+                <label class='fs-3 text-primary'>{{user.first_name}} {{user.last_name}}</label>
+                <label class='fs-5 text-dark text-decoration-none'>{{user.email}}</label>
+                <a class='fs-5 text-dark text-decoration-none'>Teléfono: {{cliente.telefono}}</a>
+                <a class='fs-5 text-dark text-decoration-none'>Dirección: {{cliente.calle}} N°{{cliente.numero}}</a>
+                <a class='fs-5 text-dark text-decoration-none'>Región: {{cliente.region}}</a>
+                <a class='fs-5 text-dark text-decoration-none'>Comuna: {{cliente.comuna}}</a>
+            </div>
+        </div>
+        <div class='col-12 col-md-8 d-grid overflow-y-scroll' style='max-height:65vh'>
+            {% for pedido in mispedidos %}
+            <div class='container d-grid border shadow p-4 rounded-5 mb-5'>
+                <label class='fs-3 text-primary'>Pedido N°{{pedido.orden}}</label>
+                <div class='row'>
+                    <div class='col-6 mt-2 d-grid'>
+                        <label class='fs-5 text-dark text-decoration-none'>Fecha: {{pedido.fecha}}</label>
+                        <label class='fs-5 text-dark text-decoration-none'>Estado: <label class='text-primary'>{{pedido.estado}}</label></label>
+                        <a class='fs-5 text-dark text-decoration-none'>Dirección: {{cliente.calle}} N°{{cliente.numero}}</a>
+                        <a class='fs-5 text-dark text-decoration-none'>{{cliente.region}}, {{cliente.comuna}}</a>
+
+                        <a class='fs-5 text-dark text-decoration-none'>Método de pago: {{pedido.id_pago}}</a>
+                    </div>
+                    <div class='col-6 d-grid'>
+                        <a class='fs-5 text-dark text-decoration-none'>Productos:</a>
+                        {% for detalle in pedido.detalles %}
+                        <div class='row'>
+                            <a class='fs-5 text-dark text-decoration-none d-flex justify-content-between'><label>{{detalle.id_producto.nombre}} x {{detalle.cantidad}}</label><label>${{detalle.total}}</label></a>
+                        </div>
+                        {% endfor %}
+                        <a class='fs-5 text-dark text-decoration-none d-flex justify-content-between'><label>Envío:</label><label>$5000</label></a>
+
+                        <a class='fs-3 text-dark text-decoration-none d-flex justify-content-between'><label>Total:</label><label>${{pedido.total}}</label></a>
+                    </div>
+                </div>
+
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock content %}

@@ -1,0 +1,44 @@
+{% extends 'core/product.html' %}
+
+{% block modal %}
+<div class="modal fade show" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="display:block">
+    <div class="modal-dialog modal-dialog-scrollable bg-light">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex justify-content-end">
+                    <a class="btn-close" href="{% url 'product' %}"></a>
+                </div>
+                <div class="d-grid container w-75">
+                    <form method="post">
+                        {% csrf_token %}
+                        <h4 class="text-center mb-4">Agregar Producto</h4>
+                        {{form.nombre.label}}:
+                        <br>
+                        {{form.nombre}}
+                        <br>
+                        {{form.descripcion.label}}:
+                        <br>
+                        {{form.descripcion}}
+                        <br>
+                        {{form.precio.label}}:
+                        <br>
+                        {{form.precio}}
+                        <br>
+                        {{form.stock.label}}:
+                        <br>
+                        {{form.stock}}
+                        <br>
+                        {{form.categoria.label}}
+                        <br>
+                        <br>
+                        {{form.categoria}}
+                        <div class="w-100 d-flex justify-content-center">
+                            <button type="submit" class="btn bg-primary mt-4 m-auto">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock modal %}

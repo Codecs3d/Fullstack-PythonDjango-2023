@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class='container' style='max-height:80vh!important'>
+    <div class='row' style='max-height:80vh!important'>
+        <div class='col-12 col-md-8 overflow-y-scroll' style='height:80vh!important'>
+            <h1 class='text-primary'>Carrito</h1>
+            {% for item in carrito %}
+            <div class='container row border shadow rounded-5 mt-5'>
+                <div class='col-5'>
+                    <img src="{% static item.imagen %}" alt='{{item.nombre}}' width='100%'>
+                </div>
+                <div class='col-5 pt-3'>
+                    <h3>{{item.nombre}}</h3>
+                    <p>{{item.descripcion}}</p>
+                    <p>${{item.precio}}</p>
+                </div>
+                <div class='col-2 d-flex flex-column justify-content-center align-items-center'>
+                    <div class="d-grid text-center">
+                        <a href="{% url 'onemore' id=item.id %}" class='bg-primary btn'>+</a>
+                        <a>{{item.cantidad}}</a>
+                        <a href="{% url 'oneless' id=item.id %}" class='bg-primary btn'>-</a>
+                    </div>
+                    <a href="{% url 'remove' id=item.id %}" class='btn bg-primary mt-3'>Eliminar</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class='col-12 col-md-4'>
+            <h1 class='text-primary'>Resumen</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-12'>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" value="2" type="radio" name="metodo_pago" id="flexRadioDefault1" checked>
+                                <label class="form-check-label fs-4" for="flexRadioDefault1">
+                                    <i class="bi bi-credit-card-2-back-fill text-primary"></i>
+                                    Tarjeta de Crédito
+                                </label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" value="1" type="radio" name="metodo_pago" id="flexRadioDefault2">
+                                <label class="form-check-label fs-4" for="flexRadioDefault2">
+                                    <i class="bi bi-cash-coin text-primary"></i>
+                                    Efectivo
+                                </label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" value="3" type="radio" name="metodo_pago" id="flexRadioDefault3">
+                                <label class="form-check-label fs-4" for="flexRadioDefault3">
+                                    <i class="bi bi-wallet2 text-primary"></i>
+                                    Débito
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class='col-6 mt-5'>
+                            <h4>Subtotal</h4>
+                        </div>
+                        <div class='col-6 mt-5'>
+                            <h4 id='subtotal-label'></h4>
+                            <input id='subtotal-carrito' hidden>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-6'>
+                            <h4>Envío</h4>
+                        </div>
+                        <div class='col-6'>
+                            <h4>$5000</h4>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-6'>
+                            <h3>Total</h3>
+                        </div>
+                        <div class='col-6'>
+                            <h4 id='label-total'></h4>
+                            <input id='total_carrito' hidden>
+                        </div>
+                    </div>
+                    <button type="submit" class='btn bg-primary mt-3'>Comprar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var detalle = []
+</script>
+{% for item in carrito %}
+<script>
+    detalle.push(["{{item.id}}", "{{item.cantidad}}", "{{item.precio}}"])
+</script>
+{% endfor %}
+<script>
+    var subtotal = 0;
+    for (let i = 0; i < detalle.length; i++) {
+        subtotal += detalle[i][1] * detalle[i][2];
+    }
+    document.getElementById('subtotal-carrito').value = subtotal;
+    document.getElementById('subtotal-label').innerHTML = '$' + subtotal;
+    document.getElementById('total_carrito').value = subtotal + 5000;
+    document.getElementById('label-total').innerHTML = '$' + (subtotal + 5000);
+</script>
+
+
+{% endblock content %}

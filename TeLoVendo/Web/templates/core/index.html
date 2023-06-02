@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block top %}
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner" style="height: 50vh;">
+        <div class="carousel-item active h-100">
+            <div class="w-100 h-100">
+                <img src="{% static 'img/carrusel1.jpg' %}" alt="img-carrusel" width='100%'>
+            </div>
+        </div>
+        <div class="carousel-item h-100">
+            <div class="w-100 h-100 bg-dark">
+                <img src="{% static 'img/carrusel2.jpg' %}" alt="img-carrusel" width='100%'>
+            </div>
+        </div>
+        <div class="carousel-item h-100">
+            <div class="w-100 h-100 bg-danger">
+                <img src="{% static 'img/carrusel4.jpg' %}" alt="img-carrusel" width='100%'>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+{% endblock top %}
+
+{% block content %}
+{% load static %}
+{% for categoria in categorias %}
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <label onclick='reload()'>{{ message }}</label>
+    {% endfor %}
+</div>
+{% endif %}
+<div class="container border border-primary mt-5 p-5 rounded-2 card-container" id="{{categoria}}">
+    <h2 class="text-center position-absolute">{{categoria}}</h2>
+    {% for producto in productos %}
+    {% if producto.categoria == categoria %}
+    <div class="card mt-5" style="width: 100%">
+        <div class="bg-dark rounded-2" style="height:200px !important; width:100% !important">
+            <img src="{% static producto.imagen %}" class="card-img-top" alt="..."  height='100%'>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{producto.nombre}}</h5>
+            <p class="card-text">${{producto.precio}}</p>
+            <p class="card-text">Stock: {{producto.stock}}</p>
+            <div class="card-text" id="detalles" onmouseenter="showchild(this)" onmouseleave="hiddenchild(this)">Ver detalles
+                <div class="position-absolute w-100 bg-dark specs text-light p-2" style="display:none">{{producto.descripcion}}</div>
+            </div>
+
+            <a class="btn bg-primary text-light mt-3" href="{% url 'shop_add' id=producto.id_producto %}">Agregar al Carro</a>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endfor %}
+
+
+{% block modal %}
+{% endblock %}
+{% endblock content %}

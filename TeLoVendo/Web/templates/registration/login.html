@@ -1,0 +1,40 @@
+{% extends 'core/index.html' %}
+
+{% block modal %}
+<div class="modal fade show" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="display:block">
+    <div class="modal-dialog bg-light">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex justify-content-end">
+                    <a class="btn-close" href="{% url 'home' %}"></a>
+                </div>
+                <div class="d-grid container w-75">
+                    <form class="w-100 text-center" method="POST">
+                        {% csrf_token %}
+                        <h5 class="card-title m-auto mt-3">Bienvenido, inicia sesión</h5>
+                        <div class="d-grid mt-4">
+                            <label for="id_username">Correo electrónico</label>
+                            {{form.username}}
+                        </div>
+                        <div class="d-grid my-2">
+                            <label for="id_password">Contraseña</label>
+                            {{form.password}}
+                        </div>
+                        {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Oops!</strong> Correo o contraseña incorrectos.
+                        </div>
+                        {% endif %}
+                        <button class="btn bg-primary rounded-4 mt-4" type="submit">Ingresar</button>
+                    </form>
+
+                    <label class="m-auto mt-2">o</label>
+                    <div class="d-flex m-auto mt-2"><label>¿Aún no tienes cuenta?</label><a class="ms-2 text-primary" href="{% url 'register' id=0 %}">Regístrate</a></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock modal %}

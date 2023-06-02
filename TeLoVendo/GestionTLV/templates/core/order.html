@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+
+
+{% block links %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'product' %}">Productos</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" href="{% url 'order' %}">Pedidos</a>
+</li>
+
+{% endblock links %}
+
+
+
+{% block content %}
+
+
+<div id="wrapper"></div>
+
+{% block modal %}
+
+{% endblock %}
+<script>
+    var productos = []
+</script>
+{% for pedido in pedidos %}
+<script>
+    productos.push(["{{pedido.orden}}", "{{pedido.fecha}}", "{{pedido.estado}}", "{{pedido.id_pago}}", "{{pedido.id_cliente}}", "{% url 'order_detail' id=pedido.id_pedido %}"])
+</script>
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        new gridjs.Grid({
+            columns: ["ORDEN", "FECHA", "ESTADO", "PAGO", "CLIENTE",
+                {
+                    name: "DETALLE",
+                    formatter: (_, row) => gridjs.html(`<a class='btn btn-primary' href="${row.cells[5].data}">Ver Detalle</a>`)
+                }
+            ],
+            data: productos,
+            search: true,
+            sort: true
+        }).render(document.getElementById("wrapper"));
+    });
+</script>
+
+{% endblock content %}
