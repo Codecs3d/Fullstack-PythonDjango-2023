@@ -8,6 +8,13 @@
 
 **TeLoVendo es un sitio de e-commerce desarrollado en Python Django**. Proporciona una plataforma para comprar y vender productos en línea. Esta documentación proporciona una descripción general del proyecto, incluyendo su configuración y algunas de las características clave.
 
+Desarrollado por:
+
+- Christian Torres
+- Madeleine Gallardo
+- Paulette Diemer
+- Dann Espinoza
+
 # Información General TeloVendo
 
 TeloVendo es un proyecto de comercio electrónico desarrollado en Django.
@@ -68,11 +75,10 @@ A continuación se detallan los pasos para configurar y ejecutar el proyecto:
 3. Configura la conexión a la base de datos en el archivo `settings.py`.
 4. Aplica la migración inicial a la base de datos: `python manage.py makemigrations`.
 5. Realiza las migraciones de la base de datos: `python manage.py migrate`.
-6. Carga los datos iniciales: Ejecuta `python manage.py loaddata initial_data.json`.
-7. Crea un superusuario: `python manage.py createsuperuser`.
-8. Inicia el servidor de desarrollo: `python manage.py runserver`.
-9. Accede al panel de administración: Abre `http://localhost:8000/admin` en tu navegador.
-10. Explora la aplicación web: Visita `http://localhost:8000` en tu navegador.
+6. Crea un superusuario: `python manage.py createsuperuser`.
+7. Inicia el servidor de desarrollo: `python manage.py runserver`.
+8. Accede al panel de administración: Abre `http://localhost:8000/admin` en tu navegador.
+9. Explora la aplicación web: Visita `http://localhost:8000` en tu navegador.
 
 ## Contribución
 
@@ -130,6 +136,9 @@ DATABASES = {
         'PORT':'',
     }
 }
+
+#Esta es la configuración por defecto de nuestra BBDD, tu puedes
+#hacer la modificación que estimes, antes de efectuar el comando makemigrations.
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
