@@ -11,6 +11,9 @@
 # Información General TeloVendo
 
 TeloVendo es un proyecto de comercio electrónico desarrollado en Django.
+Perfil de prueba:
+- **Username:** asistencia.telovendo@gmail.com
+- **Password:** admin12345!
 
 ## Descripción
 
